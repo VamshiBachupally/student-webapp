@@ -1,2 +1,10 @@
 FROM tomcat:9
-COPY target/student-webapp.war /usr/local/tomcat/webapps/
+
+# Clean default Tomcat webapps
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy WAR file
+COPY target/student-webapp.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
